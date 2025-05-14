@@ -12,6 +12,7 @@ import gregtechfoodoption.recipe.builder.BakingOvenRecipeBuilder;
 import gregtechfoodoption.recipe.builder.ElectricBakingOvenRecipeBuilder;
 import gregtechfoodoption.recipe.builder.MobProximityRecipeBuilder;
 import gregtechfoodoption.recipe.maps.ElectricBakingOvenRecipeMap;
+import net.minecraft.util.ResourceLocation;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenProperty;
 
@@ -58,7 +59,7 @@ public class GTFORecipeMaps {
     @ZenProperty
     public static final RecipeMap<BakingOvenRecipeBuilder> BAKING_OVEN_RECIPES = new RecipeMap<>("baking_oven", 2, 1, 0, 0, new BakingOvenRecipeBuilder(), false)
             .setSound(GTSoundEvents.FURNACE)
-            .onRecipeBuild(recipeBuilder -> {
+            .onRecipeBuild(new ResourceLocation("on_baking_oven_recipe_build"), recipeBuilder -> {
                 if (recipeBuilder.getTemperature() != -1) {
                     ELECTRIC_BAKING_OVEN_RECIPES.recipeBuilder().setTemp(recipeBuilder.getTemperature())
                             .duration(recipeBuilder.getDuration() / 4)

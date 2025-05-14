@@ -20,7 +20,6 @@ import gregtechfoodoption.GTFOConfig;
 import gregtechfoodoption.block.GTFOGlassCasing;
 import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.client.GTFOGuiTextures;
-import gregtechfoodoption.recipe.GTFORecipeMaps;
 import gregtechfoodoption.utils.GTFOLog;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;

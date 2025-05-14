@@ -1,12 +1,19 @@
 package gregtechfoodoption.recipe.properties;
 
-import gregtech.api.recipes.recipeproperties.RecipeProperty;
+import gregtech.api.metatileentity.multiblock.CleanroomType;
+import gregtech.api.recipes.properties.RecipeProperty;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityList;
+import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.NBTTagFloat;
+import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
 
 public class MobOnTopProperty extends RecipeProperty<ResourceLocation> {
     public static final ResourceLocation PLAYER = new ResourceLocation("player");
@@ -21,6 +28,16 @@ public class MobOnTopProperty extends RecipeProperty<ResourceLocation> {
 
     private MobOnTopProperty() {
         super(KEY, ResourceLocation.class);
+    }
+
+    @Override
+    public @NotNull NBTBase serialize(@NotNull Object o) {
+        return new NBTTagString(this.castValue(o).getPath());
+    }
+
+    @Override
+    public @NotNull Object deserialize(@NotNull NBTBase nbtBase) {
+        return Objects.requireNonNull(new ResourceLocation(((NBTTagString)nbtBase).getString()));
     }
 
     @Override

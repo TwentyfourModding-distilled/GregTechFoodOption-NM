@@ -107,11 +107,6 @@ public class MetaTileEntitySteamBakingOven extends RecipeMapSteamMultiblockContr
             recipeSteamT = previousRecipe == null ? 0 : this.previousRecipe.getProperty(ElectricBakingOvenRecipeBuilder.TemperatureProperty.getInstance(), 0) / 100;
         }
 
-        @Override
-        protected int[] calculateOverclock(Recipe recipe) {
-            return new int[]{0, recipe.getDuration() * 4};
-        }
-
         protected boolean drawEnergy(int recipeEUt, boolean simulate) {
             return recipeEUt == 0 || super.drawEnergy(recipeEUt, simulate);
         }

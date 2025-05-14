@@ -2,7 +2,7 @@ package gregtechfoodoption.recipe.builder;
 
 import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeBuilder;
-import gregtech.api.recipes.recipeproperties.PrimitiveProperty;
+import gregtech.api.recipes.properties.impl.PrimitiveProperty;
 import gregtech.api.util.ValidationResult;
 import stanhebben.zenscript.annotations.ZenMethod;
 
@@ -34,12 +34,12 @@ public class BakingOvenRecipeBuilder extends RecipeBuilder<BakingOvenRecipeBuild
     }
 
     @Override
-    public boolean applyProperty(@Nonnull String key, Object value) {
+    public boolean applyPropertyCT(@Nonnull String key, Object value) {
         if (key.equals(ElectricBakingOvenRecipeBuilder.TemperatureProperty.KEY)) {
             this.temperature(((Number) value).intValue());
             return true;
         }
-        return super.applyProperty(key, value);
+        return super.applyPropertyCT(key, value);
     }
 
 
@@ -51,6 +51,6 @@ public class BakingOvenRecipeBuilder extends RecipeBuilder<BakingOvenRecipeBuild
 
     @ZenMethod
     public int getTemperature() {
-        return this.recipePropertyStorage == null ? -1 : this.recipePropertyStorage.getRecipePropertyValue(ElectricBakingOvenRecipeBuilder.TemperatureProperty.getInstance(), -1);
+        return this.recipePropertyStorage == null ? -1 : this.recipePropertyStorage.get(ElectricBakingOvenRecipeBuilder.TemperatureProperty.getInstance(), -1);
     }
 }

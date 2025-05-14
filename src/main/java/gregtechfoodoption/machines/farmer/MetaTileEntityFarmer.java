@@ -305,9 +305,11 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
     @Override
     protected ModularUI createUI(EntityPlayer entityPlayer) {
         ModularUI.Builder builder = ModularUI.builder(GuiTextures.BACKGROUND, 176, 183)
-                .label(10, 5, this.getMetaFullName()).widget(new SlotWidget(chargerInventory, 0, 79, 80, true, true, false)
+                .label(10, 5, this.getMetaFullName())
+                .widget(new SlotWidget(chargerInventory, 0, 79, 80, true, true, false)
                         .setBackgroundTexture(GuiTextures.SLOT, GuiTextures.CHARGER_OVERLAY)
-                        .setTooltipText("gregtech.gui.charger_slot.tooltip", GTValues.VNF[getTier()], GTValues.VNF[getTier()]));
+                        .setTooltipText("gregtech.gui.charger_slot.tooltip", GTValues.VNF[getTier()], GTValues.VNF[getTier()])
+                );
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 int index = i * 3 + j;
@@ -513,8 +515,9 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
     }
 
     @Override
-    public void clearMachineInventory(NonNullList<ItemStack> itemBuffer) {
+    public void clearMachineInventory(List<ItemStack> itemBuffer) {
         super.clearMachineInventory(itemBuffer);
         clearInventory(itemBuffer, chargerInventory);
     }
+
 }

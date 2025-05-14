@@ -5,6 +5,7 @@ import gregtech.api.items.metaitem.MetaOreDictItem;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.info.MaterialIconSet;
 import gregtech.api.unification.ore.OrePrefix;
+import gregtech.common.creativetab.GTCreativeTabs;
 import it.unimi.dsi.fastutil.ints.Int2BooleanArrayMap;
 import it.unimi.dsi.fastutil.ints.Int2BooleanMap;
 import it.unimi.dsi.fastutil.objects.Object2BooleanMap;
@@ -39,7 +40,7 @@ public class GTFOOredictItem extends MetaOreDictItem {
     @Nonnull
     @Override
     public CreativeTabs[] getCreativeTabs() {
-        return new gregtech.api.util.BaseCreativeTab[]{GregTechAPI.TAB_GREGTECH_MATERIALS};
+        return new gregtech.api.creativetab.BaseCreativeTab[]{GTCreativeTabs.TAB_GREGTECH_MATERIALS};
     }
 
     public void setFoodRelated(int item) {

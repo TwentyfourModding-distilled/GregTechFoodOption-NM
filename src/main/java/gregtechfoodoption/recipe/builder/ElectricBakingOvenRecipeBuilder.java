@@ -1,13 +1,16 @@
 package gregtechfoodoption.recipe.builder;
 
 import gregtech.api.recipes.RecipeBuilder;
-import gregtech.api.recipes.recipeproperties.RecipeProperty;
+import gregtech.api.recipes.properties.RecipeProperty;
 import gregtech.api.util.EnumValidationResult;
 import gregtech.api.util.GTLog;
 import gregtechfoodoption.machines.multiblock.MetaTileEntityElectricBakingOven;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.NBTTagInt;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
@@ -34,16 +37,16 @@ public class ElectricBakingOvenRecipeBuilder extends RecipeBuilder<ElectricBakin
     }
 
     @Override
-    public boolean applyProperty(@Nonnull String key, Object value) {
+    public boolean applyPropertyCT(@Nonnull String key, Object value) {
         if (key.equals(TemperatureProperty.KEY)) {
             this.setTemp(((Number) value).intValue());
             return true;
         }
-        return super.applyProperty(key, value);
+        return super.applyPropertyCT(key, value);
     }
 
     @Override
-    protected EnumValidationResult finalizeAndValidate() {
+    protected EnumValidationResult validate() {
         if (this.temp <= 300) {
             GTLog.logger.error("Temperature cannot be less or equal to 300", new IllegalArgumentException());
             this.recipeStatus = EnumValidationResult.INVALID;
@@ -77,6 +80,16 @@ public class ElectricBakingOvenRecipeBuilder extends RecipeBuilder<ElectricBakin
             }
 
             return INSTANCE;
+        }
+
+        @Override
+        public @NotNull NBTBase serialize(@NotNull Object o) {
+            return new NBTTagInt((Integer)this.castValue(o));
+        }
+
+        @Override
+        public @NotNull Object deserialize(@NotNull NBTBase nbtBase) {
+            return ((NBTTagInt)nbtBase).getInt();
         }
 
         @Override

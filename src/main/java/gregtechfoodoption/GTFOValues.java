@@ -1,7 +1,7 @@
 package gregtechfoodoption;
 
 import gregtech.api.unification.material.info.MaterialIconSet;
-import gregtech.api.util.BaseCreativeTab;
+import gregtech.api.creativetab.BaseCreativeTab;
 import gregtechfoodoption.item.GTFOMetaItem;
 
 import java.util.Random;
